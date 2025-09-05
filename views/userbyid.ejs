@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="/css/global.css">
+    
+</head>
+<body class="h-screen w-screen flex flex-col items-center justify-center gap-20">
+    <div>
+    <h1>User Details</h1>
+
+    <table>
+        <tr class="py-2">
+            <th class="px-3">ID</th>
+            <th class="px-3">Name</th>
+            <th class="px-3">Email</th>
+            <th class="px-3">CreatedAT</th>
+            <th class="px-3">UpdatedAT</th>
+        </tr>
+        <tr class="py-2">
+            <td class="px-3"><%= user.id %></td>
+            <td class="px-3"><%= user.name %></td>
+            <td class="px-3"><%= user.email %></td>
+            <td class="px-3"><%= user.createdAt.toLocaleString() %></td>
+            <td class="px-3"><%= user.updatedAt.toLocaleString() %></td>
+        </tr>
+    </table>
+    <button type="button" class="rounded-lg border px-3 bg-red-400 text-white" id="deletebtn">Delete</button>
+    <script>
+  document.getElementById("deletebtn").addEventListener("click", async () => {
+    const response = await fetch(`/users/<%= user.id %>`, {
+      method: "DELETE",
+    });
+
+    const data = await response.json();
+    alert(data.message);
+  });
+</script>
+
+    </div>
+    <div>
+    <h2>Update User</h2>
+    <form action="/users/<%= user.id %>?_method=PUT" method="POST">
+        <label>Name:</label><br>
+        <input class="rounded-lg p-1 outline-none border type="text" name="name" value="<%= user.name %>" /><br>
+
+        <label>Email:</label><br>
+        <input class="rounded-lg p-1 outline-none border type="email" name="email" value="<%= user.email %>" /><br>
+
+        <button class="rounded-lg px-3 border" type="submit">Update</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+@source "./static/**/*.{ejs,html}";
+@source "./static/**/*.{js,ts}";
+@source "./views/**/*.ejs";
