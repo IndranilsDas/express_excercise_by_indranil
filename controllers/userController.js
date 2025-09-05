@@ -29,7 +29,9 @@ export const createUser = async (req , res)=>{
 }
 
 export const getAllUsers = async(req,res)=>{
-  const users = Users.findAll()
+  const users = await Users.findAll()
+  console.log(users , "###################");
+  
   res.json(users)
 }
 

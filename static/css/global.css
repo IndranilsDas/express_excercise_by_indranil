@@ -177,6 +177,9 @@
   .flex {
     display: flex;
   }
+  .table {
+    display: table;
+  }
   .h-4\/6 {
     height: calc(4/6 * 100%);
   }
